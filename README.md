@@ -1,8 +1,10 @@
+# Hướng dẫn
+
 ### Bước 1: Clone dự án
 
 ### Bước 2: Chạy
 
-> yarn install
+> ### yarn install
 
 ### Bước 3: Copy file .env.example -> .env và thêm các biến cần thiết
 
