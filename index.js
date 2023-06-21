@@ -14,9 +14,7 @@ function createHash(data) {
   let content = JSON.stringify(data);
   const stringEncode = `${APP_ID}${content}${data.timestamp}${SECRET_KEY}`;
 
-  const hash = Crypto.createHmac("sha256", SECRET_KEY)
-    .update(stringEncode)
-    .digest("hex");
+  const hash = Crypto.createHash("sha256").update(stringEncode).digest("hex");
 
   return hash;
 }
@@ -24,7 +22,7 @@ function createHash(data) {
 const middlewareValidateXToken = (req, res, next) => {
   let xZeventSignature = req.headers["x-zevent-signature"];
   const hash = `mac=${createHash(req.body)}`;
-  console.log(`hash: ${hash}, x-token: ${xZeventSignature}`);
+  console.log(`hash ${hash}, x-token: ${xZeventSignature}`);
   if (hash === xZeventSignature) {
     next();
   } else {
